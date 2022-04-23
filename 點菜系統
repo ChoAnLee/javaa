@@ -1,0 +1,162 @@
+import javax.swing.*;
+class Cherry
+{
+   private double price;
+   private int quantity;
+   private double tax;
+   private double total;
+   private double k=0;
+   
+   public Cherry(double price,int quantity,double tax)
+   {
+       setPrice(price);
+       setQuantity(quantity);
+       setTax(tax);
+   }
+   public void setTax(double tax){this.tax = tax;}
+   public double getTax(){return tax;}
+   public void setPrice(double price){this.price = price;}
+   public double getPrice(){return price;}
+   public void setQuantity(int quantity){this.quantity = quantity;}
+   public int getQuantity(){return quantity;}
+   public double getTotal(){return total;}
+   public double getk(){
+         return k;
+   }
+   
+   public void selling(int q,double price,double tax)
+   {
+       //setTax(tax);
+       //setQuantity(q);
+       //setPrice(price);
+       quantity+=q;
+       k=0;
+        k+=price *q+tax*price ;
+       total += k;
+    
+   }
+   
+   public String toString()
+   {
+       return String.format("今日賣出%d櫻桃，收入%.1f元",quantity,total);
+   }
+}
+class Orange
+{
+   private double price;
+   private int quantity;
+   private double total;
+   private double k=0;
+   public Orange(double price,int quantity)
+   {
+       setPrice(price);
+       setQuantity(quantity);
+   }
+
+   public void setPrice(double price){this.price = price;}
+   public double getPrice(){return price;}
+   public void setQuantity(int quantity){this.quantity = quantity;}
+   public int getQuantity(){return quantity;}
+   
+   public double getTotal(){return total;}
+   public double getk(){
+    return k;
+}
+   public void selling(int q,double price)
+   {
+
+       //setQuantity(q);
+       //setPrice(price);
+       quantity+=q;
+       k=0;
+        k+=price *q ;
+       total += k;
+   }
+   
+   public String toString()
+   {
+       return String.format("今日賣出%d柳丁，收入%.1f元",quantity,total);
+   }
+}
+class Mango
+{
+   private double price;
+   private int quantity;
+   private double total;
+   private double k=0;
+   public Mango(double price,int quantity)
+   {
+       setPrice(price);
+       setQuantity(quantity);
+   }
+
+   public void setPrice(double price){this.price = price;}
+   public double getPrice(){return price;}
+   public void setQuantity(int quantity){this.quantity = quantity;}
+   public int getQuantity(){return quantity;}
+   
+   public double getTotal(){return total;}
+   public double getk(){
+    return k;
+}
+   public void selling(int q,double price)
+   {
+
+       //setQuantity(q);
+       //setPrice(price);
+       quantity+=q;
+       k=0;
+        k+=price *q ;
+       total += k;
+   }
+   
+   public String toString()
+   {
+       return String.format("今日賣出%d芒果，收入%.1f元",quantity,total);
+   }
+}
+public class q2
+{
+   public static void main(String [] args)
+   {
+       int d = 0,ans = 0;
+       String b=" ";
+       Mango m = new Mango(0.0,0);
+       Orange o = new Orange(0.0,0);
+       Cherry c = new Cherry(0.0,0,0.0);
+
+       String fruit[] = {"櫻桃","柳丁","芒果","結帳完成"};
+       do
+       {
+           int s = JOptionPane.showOptionDialog(null,"購買何種水果?","Q2",0,3,null,fruit,null);
+       
+           switch(s)
+           {
+               case 0:
+                   b = "櫻桃";
+                   d = Integer.parseInt(JOptionPane.showInputDialog(null,"購買幾斤"+b+"?","輸入",3));
+                   c.selling(d,120,0.1);
+                   //ans = JOptionPane.showConfirmDialog(null,"一共是"+c.getTotal()+"元。下一位結帳?");
+                   break;
+               case 1:
+                   b = "柳丁";
+                   d = Integer.parseInt(JOptionPane.showInputDialog(null,"購買幾斤"+b+"?","輸入",3));
+                   o.selling(d,20);
+                   //ans = JOptionPane.showConfirmDialog(null,"一共是"+o.getTotal()+"元。下一位結帳?");
+                   break;
+               case 2:
+                   b = "芒果";
+                   d = Integer.parseInt(JOptionPane.showInputDialog(null,"購買幾斤"+b+"?","輸入",3));
+                   m.selling(d,50);
+                   //ans = JOptionPane.showConfirmDialog(null,"一共是"+m.getTotal()+"元。下一位結帳?");
+                   break;
+                case 3:
+                    ans = JOptionPane.showConfirmDialog(null,"一共是"+(m.getk()+o.getk()+c.getk())+"元。下一位結帳?");
+                    break;
+           }
+       }while(ans == 0);
+       
+       JOptionPane.showMessageDialog(null,"今日銷售如下:\n"+c+"\n"+o+"\n"+m,"訊息",1);
+       System.exit(0);
+   }
+}
