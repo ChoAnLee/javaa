@@ -1,0 +1,78 @@
+class student{
+    protected String name;
+    protected String major;
+    protected int credits=0;
+    public student(String n,String m){
+        setName(n);
+        setMajor(m);
+    }
+    public void setName(String n){
+        name=n;
+    }
+    public void setMajor(String m){
+        major=m;
+    }
+    public void setCredits(int c){
+        credits=c;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getMajor(){
+        return major;
+    }
+    public int getCredits(){
+        return credits;
+    }
+    public void addcredit(int n){
+        credits+=n;
+    }
+    public int tuition(){
+        return 1500*credits;
+    }
+
+}
+class graduate extends student{
+    private String advisor;
+    public graduate(String n,String m,String a){
+        super(n,m);
+        setAdvisor(a);
+    }
+    public void setAdvisor(String a){
+        advisor=a;
+    }
+    public String getAdvisor(){
+        return advisor;
+    }
+}
+class undergraduate extends student{
+    private boolean honor =false;
+    public undergraduate(String n,String m){
+        super(n,m);
+    }
+    public void setHonor(boolean h){
+        honor=h;
+    }
+    public boolean getHonor(){
+        return honor;
+    }
+    public int tuition(){
+        if(honor){
+            return super.tuition()/3;
+        }
+        else{
+            return super.tuition()*2/3;
+        }
+    
+    }
+
+}
+public class registration {
+    public static void main(String[] args) {
+        undergraduate u1= new undergraduate("Mary","MIS");
+        u1.addcredit(21);
+        u1.addcredit(15);
+        u1.setHonor(true);
+        System.out.println(u1.tuition());
+    }
+}
