@@ -26,6 +26,6 @@ public class Test2 {
         B b = a;
         C c = a;
         c.m2();// can be executed,answer is B's m2().
-        c.m3();// error,the C class has no m3() method.
+        b.m3();// error,the C class has no m3() method.
     }
 }
